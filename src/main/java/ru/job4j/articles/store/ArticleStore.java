@@ -61,7 +61,7 @@ public class ArticleStore implements Store<Article>, AutoCloseable {
             statement.setString(1, model.getText());
             statement.executeUpdate();
             var key = statement.getGeneratedKeys();
-            while (key.next()) {
+            if (key.next()) {
                 model.setId(key.getInt(1));
             }
         } catch (Exception e) {
